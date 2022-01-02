@@ -1,7 +1,7 @@
 Parameters:
-  MyIPv4:
+  MyIPv4Cidr:
     Type: String
-  MyIPv6:
+  MyIPv6Cidr:
     Type: String
 
 Resources:
@@ -11,7 +11,7 @@ Resources:
       PrefixListName: MyIPv4
       AddressFamily: IPv4
       Entries:
-        - Cidr: !Sub ${MyIPv4}/32
+        - Cidr: !Ref MyIPv4Cidr
       MaxEntries: 1
 
   IPv6PrefixList:
@@ -20,5 +20,5 @@ Resources:
       PrefixListName: MyIPv6
       AddressFamily: IPv6
       Entries:
-        - Cidr: !Sub ${MyIPv6}/128
+        - Cidr: !Ref MyIPv6Cidr
       MaxEntries: 1
