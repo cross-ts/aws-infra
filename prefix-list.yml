@@ -1,0 +1,24 @@
+Parameters:
+  MyIPv4:
+    Type: String
+  MyIPv6:
+    Type: String
+
+Resources:
+  IPv4PrefixList:
+    Type: AWS::EC2::PrefixList
+    Properties:
+      PrefixListName: MyIPv4
+      AddressFamily: IPv4
+      Entries:
+        - Cidr: !Sub ${MyIPv4}/32
+      MaxEntries: 1
+
+  IPv6PrefixList:
+    Type: AWS::EC2::PrefixList
+    Properties:
+      PrefixListName: MyIPv6
+      AddressFamily: IPv6
+      Entries:
+        - Cidr: !Sub ${MyIPv6}/128
+      MaxEntries: 1
