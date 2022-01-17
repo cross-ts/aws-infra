@@ -12,8 +12,8 @@ cross_tsのAWSインフラ周りを適当にまとめるリポジトリ
 #### create init.properties
 ```
 $ cd init
-$ cp init.properties.template init.properties
-$ vim init.properties
+$ cp main.properties.template main.properties
+$ vim main.properties
 ```
 
 #### Deploy init
@@ -23,5 +23,5 @@ $ aws cloudformation deploy \
     --stack-name <stack name> \
     --template-file main.yml \
     --capabilities CAPABILITY_NAMED_IAM \
-    --paramter-overrides $(cat init.properties)
+    --paramter-overrides $(cat main.properties)
 ```
