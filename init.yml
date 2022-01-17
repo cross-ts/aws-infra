@@ -1,0 +1,43 @@
+Parameters:
+  AdminUserGroupName:
+    Type: String
+    Default: admin
+  AdminUserName:
+    Type: String
+    Default: admin
+  CloudFormationTemplateBucketName:
+    Type: String
+
+Resources:
+  AdminUserGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: !Ref AdminUserGroupName
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+  AdminUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref AdminUserName
+      Groups:
+        - !Ref AdminUserGroup
+
+  GitHubOIDCProvider:
+    Type: AWS::IAM::OIDCProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList:
+        - sts.amazonaws.com
+      ThumbprintList:
+        - 6938fd4d98bab03faadb97b34396831e3780aea1
+
+  CloudFormationTemplateBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref CloudFormationTemplateBucketName
+
+Outputs:
+  GitHubOIDCProviderArn:
+    Value: !Ref GitHubOIDCProvider
+    Export:
+      Name: GitHubOIDCProviderArn

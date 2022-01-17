@@ -1,0 +1,3 @@
+AdminUserGroupName=${AdminUserGroupName}
+AdminUserName=${AdminUserName}
+CloudFormationTemplateBucketName=${CloudFormationTemplateBucketName}
