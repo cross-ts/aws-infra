@@ -1,0 +1,9 @@
+Parameters:
+  BlogS3BucketName:
+    Type: String
+
+Resources:
+  BlogS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BlogS3BucketName
