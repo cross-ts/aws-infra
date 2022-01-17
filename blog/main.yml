@@ -1,9 +1,27 @@
 Parameters:
   BlogS3BucketName:
     Type: String
+  GitHubOrg:
+    Type: String
+  RepositoryName:
+    Type: String
 
 Resources:
   BlogS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref BlogS3BucketName
+
+  GitHubActionsIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !ImportValue GitHubOIDCProviderArn
+            Action:
+              - sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*

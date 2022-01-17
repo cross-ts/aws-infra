@@ -38,6 +38,6 @@ Resources:
 
 Outputs:
   GitHubOIDCProviderArn:
-    Value: !Ref GitHubOIDCProvider
+    Value: !GetAtt GitHubOIDCProvider.Arn
     Export:
       Name: GitHubOIDCProviderArn

@@ -1,1 +1,3 @@
 BlogS3BucketName=${BlogS3BucketName}
+GitHubOrg=${GitHubOrg}
+RepositoryName=${RepositoryName}
