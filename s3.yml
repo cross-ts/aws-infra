@@ -1,0 +1,5 @@
+Resources:
+  CFnTemplateBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cross-ts.cfn.template
