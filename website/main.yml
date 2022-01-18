@@ -1,5 +1,5 @@
 Parameters:
-  BlogS3BucketName:
+  WebSiteS3BucketName:
     Type: String
   GitHubOrg:
     Type: String
@@ -7,10 +7,10 @@ Parameters:
     Type: String
 
 Resources:
-  BlogS3Bucket:
+  WebSiteS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref BlogS3BucketName
+      BucketName: !Ref WebSiteS3BucketName
 
   GitHubActionsIAMRole:
     Type: AWS::IAM::Role
@@ -33,5 +33,5 @@ Resources:
               - Effect: Allow
                 Action:
                   - s3:PutObject
-                Resource: !Sub ${BlogS3Bucket.Arn}/*
+                Resource: !Sub ${WebSiteS3Bucket.Arn}/*
 
