@@ -16,6 +16,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Fix timestamp
         run: |
           for f in $(git ls-files templates); do
