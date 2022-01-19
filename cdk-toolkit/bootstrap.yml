@@ -163,6 +163,10 @@ Resources:
                       - UseAwsManagedKey
                       - Ref: AWS::NoValue
                       - Fn::Sub: ${FileAssetsBucketKmsKeyId}
+      LifecycleConfiguration:
+        Rules:
+          - Status: Enabled
+            ExpirationInDays: 1
       PublicAccessBlockConfiguration:
         Fn::If:
           - UsePublicAccessBlockConfiguration
@@ -199,6 +203,24 @@ Resources:
     Properties:
       ImageScanningConfiguration:
         ScanOnPush: true
+      LifecyclePolicy:
+        # JSON書かせるなボケ
+        LifecyclePolicyText: |
+          {
+            "rules": [
+              {
+                "rulePriority": 1,
+                "selection": {
+                  "tagStatus": "any",
+                  "countType": "imageCountMoreThan",
+                  "countNumber": 1
+                },
+                "action": {
+                  "type": "expire"
+                }
+              }
+            ]
+          }
       RepositoryName:
         Fn::If:
           - HasCustomContainerAssetsRepositoryName

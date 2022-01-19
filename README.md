@@ -29,7 +29,9 @@ $ aws cloudformation deploy \
 ## cdk-toolkit
 
 * `cdk bootstrap` で実行されるCFnのテンプレートを吐き出したもの
-* デプロイの際にtmpを作成するS3バケットをCFnと共通で使えるように名前をつけている
+* デフォルトの挙動と違うのは以下
+  * デプロイの際にtmpを作成するS3バケットをCFnと共通で使えるように名前をつけている
+  * Asset用のS3バケットとECRにLifecycle設定を追加している
 
 ### How to Use?
 #### Create bootstrap.properties
@@ -48,3 +50,7 @@ $ aws cloudformation deploy \
     --capabilities CAPABILITY_NAMED_IAM \
     --paramter-overrides $(cat main.properties)
 ```
+
+#### If you change from default.
+
+See: https://docs.aws.amazon.com/ja_jp/cdk/v2/guide/bootstrapping.html#bootstrapping-custom-synth
