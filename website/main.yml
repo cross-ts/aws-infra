@@ -33,5 +33,6 @@ Resources:
               - Effect: Allow
                 Action:
                   - s3:PutObject
+                  - s3:ListObjectsV2
                 Resource: !Sub ${WebSiteS3Bucket.Arn}/*
 
