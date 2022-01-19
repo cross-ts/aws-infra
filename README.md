@@ -34,11 +34,11 @@ $ aws cloudformation deploy \
   * Asset用のS3バケットとECRにLifecycle設定を追加している
 
 ### How to Use?
-#### Create bootstrap.properties
+#### Create main.properties
 ```
 $ cd cdk-toolkit
-$ cp bootstrap.properties.template bootstrap.properties
-$ vim bootstrap.properties
+$ cp main.properties.template main.properties
+$ vim main.properties
 ```
 
 #### Deploy cdk-toolkit
@@ -46,7 +46,7 @@ $ vim bootstrap.properties
 $ cd cdk-toolkit
 $ aws cloudformation deploy \
     --stack-name $(basename $(pwd)) \
-    --template-file bootstrap.yml \
+    --template-file main.yml \
     --capabilities CAPABILITY_NAMED_IAM \
     --paramter-overrides $(cat main.properties)
 ```
