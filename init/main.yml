@@ -7,6 +7,10 @@ Parameters:
     Default: admin
   CloudFormationTemplateBucketName:
     Type: String
+  GitHubOrg:
+    Type: String
+  RepositoryName:
+    Type: String
 
 Resources:
   AdminUserGroup:
@@ -35,6 +39,29 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref CloudFormationTemplateBucketName
+
+  TemplateUploadRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !GetAtt GitHubOIDCProvider.Arn
+            Action:
+              - sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+      Policies:
+        - PolicyName: AllowPutObjectToBucket
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                Resource: !Sub ${CloudFormationTemplateBucket.Arn}/*
 
 Outputs:
   GitHubOIDCProviderArn:

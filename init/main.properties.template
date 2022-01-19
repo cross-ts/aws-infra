@@ -1,3 +1,5 @@
 AdminUserGroupName=${AdminUserGroupName}
 AdminUserName=${AdminUserName}
 CloudFormationTemplateBucketName=${CloudFormationTemplateBucketName}
+GitHubOrg=${GitHubOrg}
+RepositoryName=${RepositoryName}
