@@ -61,8 +61,11 @@ Resources:
               - Effect: Allow
                 Action:
                   - s3:PutObject
-                  - s3:ListObjectsV2
                 Resource: !Sub ${CloudFormationTemplateBucket.Arn}/*
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                Resource: !Ref CloudFormationTemplateBucket.Arn
 
 Outputs:
   GitHubOIDCProviderArn:
