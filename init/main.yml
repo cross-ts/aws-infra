@@ -65,7 +65,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - s3:ListBucket
-                Resource: !Ref CloudFormationTemplateBucket.Arn
+                Resource: !GetAtt CloudFormationTemplateBucket.Arn
 
 Outputs:
   GitHubOIDCProviderArn:
