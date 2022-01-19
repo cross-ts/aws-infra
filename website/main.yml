@@ -33,6 +33,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - s3:PutObject
+                  - s3:DeleteObject
                 Resource: !Sub ${WebSiteS3Bucket.Arn}/*
               - Effect: Allow
                 Action:
