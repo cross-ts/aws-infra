@@ -20,8 +20,31 @@ $ vim main.properties
 ```
 $ cd init
 $ aws cloudformation deploy \
-    --stack-name <stack name> \
+    --stack-name $(basename $(pwd)) \
     --template-file main.yml \
+    --capabilities CAPABILITY_NAMED_IAM \
+    --paramter-overrides $(cat main.properties)
+```
+
+## cdk-toolkit
+
+* `cdk bootstrap` で実行されるCFnのテンプレートを吐き出したもの
+* デプロイの際にtmpを作成するS3バケットをCFnと共通で使えるように名前をつけている
+
+### How to Use?
+#### Create bootstrap.properties
+```
+$ cd cdk-toolkit
+$ cp bootstrap.properties.template bootstrap.properties
+$ vim bootstrap.properties
+```
+
+#### Deploy cdk-toolkit
+```
+$ cd cdk-toolkit
+$ aws cloudformation deploy \
+    --stack-name $(basename $(pwd)) \
+    --template-file bootstrap.yml \
     --capabilities CAPABILITY_NAMED_IAM \
     --paramter-overrides $(cat main.properties)
 ```
