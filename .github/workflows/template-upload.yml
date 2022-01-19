@@ -5,7 +5,7 @@ on:
       - develop
     paths:
       - .github/workflows/template-upload.yml
-      - templates/**
+      - templates/**.yml
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Fix timestamp
+      - name: Use last committed timestamp
         run: |
           for f in $(git ls-files templates); do
             touch -d $(git log -1 --format='%aI' "$f") "$f"
