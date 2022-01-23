@@ -73,3 +73,7 @@ Outputs:
     Value: !GetAtt GitHubOIDCProvider.Arn
     Export:
       Name: GitHubOIDCProviderArn
+  TemplateBucketName:
+    Value: !Ref CloudFormationTemplateBucketName
+    Export:
+      Name: TemplateBucketName
