@@ -4,7 +4,6 @@ import {
   aws_ec2 as ec2,
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class MinecraftStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
